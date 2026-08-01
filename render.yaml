@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: qwen-chatbot
+    env: python
+    plan: standard          # needs real RAM/CPU — see README for why
+    buildCommand: >
+      pip install --upgrade pip &&
+      pip install torch==2.3.1 --index-url https://download.pytorch.org/whl/cpu &&
+      pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 1 --threads 2 --timeout 300
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: MODEL_NAME
+        value: Qwen/Qwen2.5-1.5B-Instruct
+      - key: MAX_NEW_TOKENS
+        value: "300"

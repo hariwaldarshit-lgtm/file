@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ model_name }} — Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="header-left">
+        <span class="dot" id="status-dot"></span>
+        <div class="header-text">
+          <h1>local model console</h1>
+          <p class="model-tag">{{ model_name }}</p>
+        </div>
+      </div>
+      <div class="header-right" id="status-message">starting up…</div>
+    </header>
+
+    <main class="log" id="log">
+      <div class="log-empty" id="log-empty">
+        <p>No messages yet.</p>
+        <p class="log-empty-sub">Send something below once the model finishes loading.</p>
+      </div>
+    </main>
+
+    <form class="composer" id="composer">
+      <textarea
+        id="input"
+        placeholder="Type a message…"
+        rows="1"
+        disabled
+      ></textarea>
+      <button type="submit" id="send-btn" disabled>run</button>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
